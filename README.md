@@ -25,13 +25,13 @@ CIFAR-10:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
 | --------- | --------------- | ------------ |
 | VGG-Small | 1 / 1           | 91.4         |
-| ResNet-18 | 1 / 1           | 87.2         |
+| ResNet-20 | 1 / 1           | 87.2         |
 | ResNet-18 | 1 / 1           | 93.0         | 
 
 ImageNet:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
-| --------- | --------------- | --------- |
-| ResNet-18 | 1 / 1           | 59.7      |
+| --------- | --------------- | ------------ |
+| ResNet-18 | 1 / 1           | 59.7         |
 
 **Reference.** 
 
@@ -52,12 +52,8 @@ If you find our code useful for your research, please consider citing:
       month={XXXXXX}
     }
 
-
-
-
-
-
 ## Wzixin
+
                                                                                         
                        ,--.                                           ,--.         ,--. 
       .--.--.      ,--/  /|    ,---,                  ,---,.        ,--.'|       ,--.'| 
