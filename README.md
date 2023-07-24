@@ -33,7 +33,7 @@ ImageNet:
 | --------- | --------------- | ------------ |
 | ResNet-18 | 1 / 1           | 59.7         |
 
-**Reference.** 
+**Reference:** 
 
 [1] Haotong Qin, Ruihao Gong, Xianglong Liu, Mingzhu Shen,
 Ziran Wei, Fengwei Yu, and Jingkuan Song. Forward and
