@@ -2,6 +2,8 @@
 
 This project is the PyTorch implementation of our paper : Self-Knowledge Distillation enhanced Binary Neural Networks using Underutilized Information.
 
+## The core of our code is located in /SKD_BNN.py. As of now, our paper has not been accepted yet, and this part is waiting to be uploaded.
+
 **Datasets augmentation:** (1) CIFAR-10: During training, we employ normal data augmentation techniques, including padding four pixels on each side of the images, random cropping, and random horizontal flipping. For testing, we evaluate a single view of the original image. (2) ImageNet: For the training stage, we implement random cropping and random horizontal flipping as the augmentation methods. During testing, we exclusively employed a 224 × 224 center cropping approach for evaluation.
 
 **Network structures:** We evaluate SKD-BNN with widely popular network structures, including ResNet-18, ResNet-20 and VGG-Small. Hardtanh is selected as the activation function. To ensure a fair comparison, we binarize all convolution layers except for the first and last layers of the networks consistently.
