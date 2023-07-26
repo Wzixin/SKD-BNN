@@ -53,7 +53,6 @@ class LambdaLayer(nn.Module):
         return self.lambd(x)
 
 
-# 原始的ReaNet结构   这里用不上
 class BasicBlock(nn.Module):
     expansion = 1
 

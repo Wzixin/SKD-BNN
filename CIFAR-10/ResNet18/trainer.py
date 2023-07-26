@@ -413,11 +413,6 @@ def train(train_loader, model, criterion, optimizer, epoch, SumWriter, args, KD_
         image = vutils.make_grid(input[2].float(), normalize=True)
         SumWriter.add_image("image", image, epoch)
 
-        # plt.hist(torch.reshape(input=L1_1_Bix[0], shape=(L1_1_Bix.size()[1], -1)).cpu())
-        # plt.hist(L1_1_Bix[0][1].cpu())
-        # plt.savefig('H-.jpg')
-        # plt.savefig('HbnOUT-.jpg')
-
         L1_1_Binaryout = vutils.make_grid(L1_1_Binaryout[2].float().detach().cpu().unsqueeze(dim=1), nrow=32, normalize=True)
         SumWriter.add_image("L1_1_Binaryout", L1_1_Binaryout, epoch)
         L1_1_Realout = vutils.make_grid(L1_1_Realout[2].float().detach().cpu().unsqueeze(dim=1), nrow=32, normalize=True)
