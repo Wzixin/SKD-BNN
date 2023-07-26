@@ -39,7 +39,7 @@ ImageNet:
 Ziran Wei, Fengwei Yu, and Jingkuan Song. Forward and
 backward information retention for accurate binary neural networks. In 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition, CVPR 2020, Seattle, WA, USA, June 13-19, 2020, pages 2247-2256, 2020.
 
-## Citation
+<!-- ## Citation
 
 If you find our code useful for your research, please consider citing:
 
@@ -50,7 +50,7 @@ If you find our code useful for your research, please consider citing:
       journal={XXXXXX},
       year={XXXXXX},
       month={XXXXXX}
-    }
+    } -->
 
 ## Wzixin
 
