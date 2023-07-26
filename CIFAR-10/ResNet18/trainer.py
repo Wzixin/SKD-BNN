@@ -124,7 +124,7 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
-    normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2470, 0.2435, 0.2616])  # CIFAR10 使用
+    normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2470, 0.2435, 0.2616])
     train_loader = torch.utils.data.DataLoader(
         datasets.CIFAR10(root='/home/ubuntu/myData/CIFAR10', train=True, transform=transforms.Compose([
             transforms.RandomHorizontalFlip(p=0.5),
