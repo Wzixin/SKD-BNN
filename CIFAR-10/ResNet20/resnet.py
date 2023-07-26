@@ -33,7 +33,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.nn.init as init
 import ir_1w1a
-from SKD_BNN import Hist_Show
 
 __all__ = ['resnet20_1w1a', 'ResNet', 'resnet20', 'resnet32', 'resnet44', 'resnet56', 'resnet110', 'resnet1202']
 
@@ -112,36 +111,28 @@ class BasicBlock_1w1a(nn.Module):
                 )
 
     def forward(self, x, realx):
-        # 第一个卷积块
+        # first convolutional block
         Binaryout1, Realout1 = self.conv1(x, realx)
-        # Hist_Show(Binaryout1, '1-BN前二值激活')
         Binaryout1 = self.bn1(Binaryout1)
-        # Hist_Show(Binaryout1, '1-BN后二值激活')
         Binaryout1 += self.shortcut(x)
         Binaryout1 = F.hardtanh(Binaryout1)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn1 = copy.deepcopy(self.bn1)
         realshortcut = copy.deepcopy(self.shortcut)
         with torch.no_grad():
-            # Hist_Show(Realout1, '1-BN前全精度激活')
             Realout1 = realbn1(Realout1)
-            # Hist_Show(Realout1, '1-BN后全精度激活换号')
             Realout1 += realshortcut(realx)
             Realout1 = F.hardtanh(Realout1)
         
-        # 第二个卷积块
+        # second convolution block
         Binaryout2, Realout2 = self.conv2(Binaryout1, Realout1)
-        # Hist_Show(Binaryout2, '2-BN前二值激活')
         Binaryout2 = self.bn2(Binaryout2)
-        # Hist_Show(Binaryout2, '2-BN后二值激活')
         Binaryout2 += Binaryout1
         Binaryout2 = F.hardtanh(Binaryout2)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn2 = copy.deepcopy(self.bn2)
         with torch.no_grad():
-            # Hist_Show(Realout2, '2-BN前全精度激活')
             Realout2 = realbn2(Realout2)
-            # Hist_Show(Realout2, '2-BN后全精度激活换号')
             Realout2 += Realout1
             Realout2 = F.hardtanh(Realout2)
 

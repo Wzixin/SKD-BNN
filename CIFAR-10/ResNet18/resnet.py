@@ -40,22 +40,22 @@ class BasicBlock(nn.Module):
             )
 
     def forward(self, x, realx):
-        # 第一个卷积块
+        # first convolutional block
         Binaryout1, Realout1 = self.conv1(x, realx)
         Binaryout1 = self.bn1(Binaryout1)
         Binaryout1 = F.hardtanh(Binaryout1)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn1 = copy.deepcopy(self.bn1)
         with torch.no_grad():
             Realout1 = realbn1(Realout1)
             Realout1 = F.hardtanh(Realout1)
 
-        # 第二个卷积块
+        # second convolution block
         Binaryout2, Realout2 = self.conv2(Binaryout1, Realout1)
         Binaryout2 = self.bn2(Binaryout2)
         Binaryout2 += self.shortcut(x)
         Binaryout2 = F.hardtanh(Binaryout2)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn2 = copy.deepcopy(self.bn2)
         realshortcut = copy.deepcopy(self.shortcut)
         with torch.no_grad():
@@ -72,7 +72,6 @@ class BasicBlock(nn.Module):
         return Binaryout1, Realout1, Binaryout2, Realout2
 
 
-# ResNet50()以上才使用了 Bottleneck
 class Bottleneck(nn.Module):
     expansion = 4
 
@@ -114,8 +113,8 @@ class ResNet(nn.Module):
         self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
         self.linear = nn.Linear(512*block.expansion, num_classes)
         self.bn2 = nn.BatchNorm1d(512*block.expansion)
-        self.apply(_weights_init)  # SD 论文
-        # self.softmax = nn.LogSoftmax()  # IR-Net原文打开了
+        self.apply(_weights_init)
+        # self.softmax = nn.LogSoftmax()
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks-1)
@@ -126,8 +125,8 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        # out = self.bn1(self.conv1(x))  # IR-Net原文
-        out = F.hardtanh(self.bn1(self.conv1(x)))  # SD 论文
+        # out = self.bn1(self.conv1(x))
+        out = F.hardtanh(self.bn1(self.conv1(x)))
 
         L1_1_Binaryout, L1_1_Realout, L1_2_Binaryout, L1_2_Realout = self.layer1[0](out, out.detach())
         L1_3_Binaryout, L1_3_Realout, L1_4_Binaryout, L1_4_Realout = self.layer1[1](L1_2_Binaryout, L1_2_Realout)
@@ -145,7 +144,7 @@ class ResNet(nn.Module):
         out = out.view(out.size(0), -1)
         penul_Binaryout = self.bn2(out)
         out = self.linear(penul_Binaryout)
-        # out = self.softmax(out)  # IR-Net原文打开了
+        # out = self.softmax(out)
 
         return out, penul_Binaryout, \
                L1_1_Binaryout, L1_1_Realout, L1_2_Binaryout, L1_2_Realout, \

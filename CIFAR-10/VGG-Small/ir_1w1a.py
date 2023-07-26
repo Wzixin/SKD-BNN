@@ -43,11 +43,11 @@ class SKDIRConv2d(nn.Conv2d):
         ba = binaryfunction.BinaryQuantize().apply(a, self.k, self.t)
         bw = bw * sw
 
-        # 二值卷积 输出
+        # binary convolution output
         output = F.conv2d(ba, bw, self.bias, self.stride, self.padding, self.dilation, self.groups)
 
         with torch.no_grad():
-            # 全精度卷积 输出
+            # Full precision convolution output
             RealConv_output = F.conv2d(Ra, Rw, self.bias, self.stride, self.padding, self.dilation, self.groups)
             RealConv_output = torch.abs(output) * torch.sign(RealConv_output)
 

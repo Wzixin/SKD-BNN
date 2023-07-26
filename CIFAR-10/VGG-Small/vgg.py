@@ -204,7 +204,7 @@ class VGG_SMALL_1W1A(nn.Module):
         L1_Binaryout = self.pooling(L1_Binaryout)
         L1_Binaryout = self.bn1(L1_Binaryout)
         L1_Binaryout = self.nonlinear(L1_Binaryout)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn1 = copy.deepcopy(self.bn1)
         with torch.no_grad():
             L1_Realout = self.pooling(L1_Realout)
@@ -214,7 +214,7 @@ class VGG_SMALL_1W1A(nn.Module):
         L2_Binaryout, L2_Realout = self.conv2(L1_Binaryout, L1_Realout)
         L2_Binaryout = self.bn2(L2_Binaryout)
         L2_Binaryout = self.nonlinear(L2_Binaryout)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn2 = copy.deepcopy(self.bn2)
         with torch.no_grad():
             L2_Realout = realbn2(L2_Realout)
@@ -224,7 +224,7 @@ class VGG_SMALL_1W1A(nn.Module):
         L3_Binaryout = self.pooling(L3_Binaryout)
         L3_Binaryout = self.bn3(L3_Binaryout)
         L3_Binaryout = self.nonlinear(L3_Binaryout)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn3 = copy.deepcopy(self.bn3)
         with torch.no_grad():
             L3_Realout = self.pooling(L3_Realout)
@@ -234,7 +234,7 @@ class VGG_SMALL_1W1A(nn.Module):
         L4_Binaryout, L4_Realout = self.conv4(L3_Binaryout, L3_Realout)
         L4_Binaryout = self.bn4(L4_Binaryout)
         L4_Binaryout = self.nonlinear(L4_Binaryout)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn4 = copy.deepcopy(self.bn4)
         with torch.no_grad():
             L4_Realout = realbn4(L4_Realout)
@@ -244,7 +244,7 @@ class VGG_SMALL_1W1A(nn.Module):
         L5_Binaryout = self.pooling(L5_Binaryout)
         L5_Binaryout = self.bn5(L5_Binaryout)
         L5_Binaryout = self.nonlinear(L5_Binaryout)
-        # copy重复使用的层，并进行冻结
+        # Copy reused layers and freeze them
         realbn5 = copy.deepcopy(self.bn5)
         with torch.no_grad():
             L5_Realout = self.pooling(L5_Realout)
