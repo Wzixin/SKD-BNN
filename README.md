@@ -2,7 +2,7 @@
 
 This project is the PyTorch implementation of our paper : Self-Knowledge Distillation enhanced Binary Neural Networks using Underutilized Information.
 
-![image](Graphical Abstract.pdf)
+![image](Graphical-Abstract.pdf)
 
 **Dependencies:**
 
