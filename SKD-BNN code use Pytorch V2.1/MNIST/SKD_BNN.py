@@ -92,22 +92,28 @@ class Spatial_Channel_loss(nn.Module):
 
 		batch_size = targets.size()[0]
 		channel_size = targets.size()[1]
-		feature_size = targets.size()[2] ** 2
+		# feature_size = targets.size()[2] ** 2
+		feature_size = targets.size()[1]
 
-		SVec_out = torch.unsqueeze(torch.mean(torch.mean(outputs, dim=3), dim=2), dim=1)
-		SVec_tar = torch.unsqueeze(torch.mean(torch.mean(targets, dim=3), dim=2), dim=1)
-		SVec_out = SVec_out / torch.unsqueeze(torch.norm(SVec_out, dim=-1), dim=1).detach()
-		SVec_tar = SVec_tar / torch.unsqueeze(torch.norm(SVec_tar, dim=-1), dim=1)
+		# SVec_out = torch.unsqueeze(torch.mean(torch.mean(outputs, dim=3), dim=2), dim=1)
+		# SVec_tar = torch.unsqueeze(torch.mean(torch.mean(targets, dim=3), dim=2), dim=1)
+		# SVec_out = SVec_out / torch.unsqueeze(torch.norm(SVec_out, dim=-1), dim=1).detach()
+		# SVec_tar = SVec_tar / torch.unsqueeze(torch.norm(SVec_tar, dim=-1), dim=1)
+		#
+		# CVec_out = torch.unsqueeze(torch.mean(outputs, dim=1).reshape(batch_size, -1), dim=1)
+		# CVec_tar = torch.unsqueeze(torch.mean(targets, dim=1).reshape(batch_size, -1), dim=1)
+		# CVec_out = CVec_out / torch.unsqueeze(torch.norm(CVec_out, dim=-1), dim=1).detach()
+		# CVec_tar = CVec_tar / torch.unsqueeze(torch.norm(CVec_tar, dim=-1), dim=1)
+		SVec_out = outputs
+		SVec_tar = targets
+		CVec_out = outputs
+		CVec_tar = targets
 
-		CVec_out = torch.unsqueeze(torch.mean(outputs, dim=1).reshape(batch_size, -1), dim=1)
-		CVec_tar = torch.unsqueeze(torch.mean(targets, dim=1).reshape(batch_size, -1), dim=1)
-		CVec_out = CVec_out / torch.unsqueeze(torch.norm(CVec_out, dim=-1), dim=1).detach()
-		CVec_tar = CVec_tar / torch.unsqueeze(torch.norm(CVec_tar, dim=-1), dim=1)
-
-		# # DGRL论文 空间通道注意力loss
+		# #  空间通道注意力loss
 		SVec_loss = torch.norm(SVec_out - SVec_tar) / channel_size
 		CVec_loss = torch.norm(CVec_out - CVec_tar) / feature_size
 		loss = (SVec_loss + CVec_loss) / batch_size
+
 		# SVec_loss = self.SmoothL1(SVec_out, SVec_tar) / channel_size
 		# CVec_loss = self.SmoothL1(CVec_out, CVec_tar) / feature_size
 		# loss = (SVec_loss + CVec_loss) / batch_size
