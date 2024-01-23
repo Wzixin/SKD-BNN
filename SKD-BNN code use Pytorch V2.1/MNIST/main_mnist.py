@@ -10,9 +10,6 @@ from torch.autograd import Variable
 from models.binarized_modules import  BinarizeLinear,BinarizeConv2d
 from models.binarized_modules import  Binarize,HingeLoss
 
-import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-
 import copy
 from SKD_BNN import KL_SoftLabelloss
 from SKD_BNN import Spatial_Channel_loss

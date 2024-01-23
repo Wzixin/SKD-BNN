@@ -20,6 +20,10 @@ The proposed SKD-BNN approach is trained from scratch without a pretrained model
 - pytorch-cuda=12.1
 
 **Accuracy:** 
+MNIST:
+|   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
+| --------- | --------------- | ------------ |
+|   3-MLP   | 1 / 1           | 98.78        |
 
 CIFAR-10:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |

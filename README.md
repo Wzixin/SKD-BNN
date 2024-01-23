@@ -14,6 +14,10 @@ This project is the PyTorch implementation of our paper : Self-Knowledge Distill
 - Torchvision == 0.10.0
 
 **Accuracy:** 
+MNIST:
+|   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
+| --------- | --------------- | ------------ |
+|   3-MLP   | 1 / 1           | 98.78        |
 
 CIFAR-10:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
