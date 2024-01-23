@@ -1,5 +1,6 @@
 import argparse
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import time
 import logging
 
@@ -126,7 +127,7 @@ def main():
 
     normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2470, 0.2435, 0.2616])
     train_loader = torch.utils.data.DataLoader(
-        datasets.CIFAR10(root='/home/ubuntu/myData/CIFAR10', train=True, transform=transforms.Compose([
+        datasets.CIFAR10(root='/home/kmyh/myData/CIFAR10', train=True, transform=transforms.Compose([
             transforms.RandomHorizontalFlip(p=0.5),
             transforms.RandomCrop(32, padding=4, padding_mode='edge'),
             transforms.ToTensor(),
@@ -136,7 +137,7 @@ def main():
         num_workers=args.workers, pin_memory=False, drop_last=True)
 
     val_loader = torch.utils.data.DataLoader(
-        datasets.CIFAR10(root='/home/ubuntu/myData/CIFAR10', train=False, transform=transforms.Compose([
+        datasets.CIFAR10(root='/home/kmyh/myData/CIFAR10', train=False, transform=transforms.Compose([
             transforms.ToTensor(),
             normalize,
         ])),
