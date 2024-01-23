@@ -2,6 +2,8 @@
 
 This project is the PyTorch implementation of our paper : Self-Knowledge Distillation enhanced Binary Neural Networks using Underutilized Information.
 
+![image](Graphical Abstract.pdf)
+
 **Dependencies:**
 
 - Ubuntu == 18.04
@@ -30,12 +32,6 @@ ImageNet:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
 | --------- | --------------- | ------------ |
 | ResNet-18 | 1 / 1           | 59.7         |
-
-**Reference:** 
-
-[1] Haotong Qin, Ruihao Gong, Xianglong Liu, Mingzhu Shen,
-Ziran Wei, Fengwei Yu, and Jingkuan Song. Forward and
-backward information retention for accurate binary neural networks. In 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition, CVPR 2020, Seattle, WA, USA, June 13-19, 2020, pages 2247-2256, 2020.
 
 <!-- ## Citation
 
