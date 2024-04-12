@@ -1,10 +1,10 @@
 # SKD-BNN
 
-This project is the PyTorch implementation of our paper : Self-Knowledge Distillation enhanced Binary Neural Networks using Underutilized Information.
+This project is the PyTorch implementation of our paper : Self-knowledge distillation enhanced binary neural networks derived from underutilized information
 
 ![image](Graphical-Abstract.png)
 
-**Dependencies:**
+**Dependencies**
 
 - Ubuntu == 18.04
 - GPU == NVIDIA V100
@@ -15,7 +15,8 @@ This project is the PyTorch implementation of our paper : Self-Knowledge Distill
 - Pytorch == 1.9.1
 - Torchvision == 0.10.0
 
-**Accuracy:** 
+**Accuracy** 
+
 MNIST:
 |   Model   | Bit-Width (W/A) | Top-1 Acc. (%) |
 | --------- | --------------- | ------------ |
@@ -33,18 +34,11 @@ ImageNet:
 | --------- | --------------- | ------------ |
 | ResNet-18 | 1 / 1           | 59.7         |
 
-<!-- ## Citation
+**Citation**
 
 If you find our code useful for your research, please consider citing:
 
-    @article{XXXXXX,
-      title={Self-Knowledge Distillation enhanced Binary Neural Networks using Underutilized Information},
-      DOI={XXXXXX},
-      author={XXXXXX},
-      journal={XXXXXX},
-      year={XXXXXX},
-      month={XXXXXX}
-    } -->
+Zeng, K., Wan, Z., Gu, H. et al. Self-knowledge distillation enhanced binary neural networks derived from underutilized information. Appl Intell (2024). https://doi.org/10.1007/s10489-024-05444-8
 
 ## Wzixin
 
